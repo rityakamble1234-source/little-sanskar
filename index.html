@@ -1,0 +1,255 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Ghar ka Safar - Little Sanskar </title>
+    <style>
+        body 
+        {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg,#74b9ff 0%, #dfe6e9 100%);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #2d3436;
+            display:flex; justify-content: center; 
+            align-items:center; height: 100vh;
+            overflow: hidden;
+        }
+         .container 
+         {
+            width: 380px; text-align: center;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0,15);
+
+         }
+         h1 
+          {
+              color: #0984e3;
+              font-size: 2.2rem;
+
+          }
+          .score-board 
+          {
+            font-size: 1.5rem;
+            background: #ffeaa7;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #d63031;
+        
+          }
+         .task-card 
+         {
+            background: #f1f2f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+         }
+         .done-btn 
+         { 
+            background-color: #00b894;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+         }
+         .done-btn:hover 
+         {
+            background-color: #019074;
+
+         }
+         .completed 
+         {
+            text-decoration: line-through;
+            color: #b2bec3;
+         }
+         .hidden{display: none !important;}
+         .screen{background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0,2); width: 380px; text-align: center;}
+         .brand-titel{font-size: 24px; color: #0984e3; font-weight: bold;margin-bottom: 5px;}
+         .welcome-desc{font-size: 18px; color:#2d3436;  margin-bottom: 25px; font-weight: 600;}
+         .start-btn{background-color: #00b894; color: white; border: none; padding: 12px 30px; font-size: 18px; font-weight: bold; border-radius: 30px; cursor: pointer;}
+         .big-star{font-size: 60px; animation: bounce 0.6s infinite alternate;}
+         @keyframes bounce{from{ transfrom: translateY(0);} to {tranform: translateY(-10px);}}
+
+      </style>
+    </head>
+    <body>
+      <!--1. WELCOME SCREEN -->
+      <div id="welcome-screen" class="screen">
+          <div class="brand-titel">🌟Little Sanskar 🌟</div>
+           <p class="welcome-desc">Chote hero banne ke liye taiyar ho tum?</p>
+           <button class="start-btn" onclick="startApp()">Start</button>
+             <div style="margin-top: 15px; text-align: center; border-top: 1px dashed #ddd; padding-top: 10px;">
+               <p style="font-size: 13px; color: #666; margin-bottom: 5px;">💖💝Support Little Sanskar </p>
+               <img src="QRCODE.png" alt="UPI QR Code" style="width:200px; height: 200x; border-radius: 6px;">
+               <p style="font-size: 12px; font-weight: bold; color: #333; margin-top: 4px;">UPI: 9226469747@ybl</p>
+              </div> 
+              
+          </div>
+        <div id="main-app" class="screen hidden">
+           <h1>🌟 Chota Hero 🌟</h1>
+           <p> Roz ki achhi aadatain daalo, Stars jeeto!</p>
+           
+           <div Class="Score-board">
+              ⭐ Stars Earned: <span id="score">0</span>
+           </div> 
+           <div class="task-card" id="task1-box">
+            <span id="task1-text">🦷 Subah uthkar Brush karna</span> 
+            <button class="done-btn" id="btn1" onclick="completeTask(1, 10)">Done</button>
+           </div>
+           
+           <div class="task-card" id="task2-box">
+            <span id="task2-text">🧼 Khane se pehle Haath dhona</span>
+            <button class="done-btn" id="btn2" onclick="completeTask(2, 10)">Done</button>
+            </div>
+
+            <div class="task-card" id="task3-box">
+                <span id="task3-text">🎒 Apne Khilone Wapas jagah par rakhna</span>
+                <button class="done-btn" id="btn3" onclick="completeTask(3, 15)">Done</button>
+            </div>
+            
+            <p id="congrates" style="font-weight: bold; color:#00b894; margin-top: 20px; font-size: 1.3rem;"></p>
+
+            <!-- Amazon Recommended product Section-->
+             <div style="background: #fff; padding: 15px; border-radius: 10px; margin: 20px 0; text-align: center; box-shadow: 0 2px 5 rgba(0,0,0,0,1);">
+               <h4 style="color:#333; margin-bottom: 8px;">🎒Recommended School Bag</h4>
+               <p style="font-size: 13px; color: #666; margin-bottom: 12px;"> Best quality school bag for kids.check it out on Amazon!</p>
+               <a href="https://www.amazon.com/LOVEVOOK-Backpack-Student-Teenage-Bookbag/dp/B0H8Y5NLR3?tag=littlesanskar-20&linkCode=as4&ref_=onb_gen_lnk" target="_blank" style="background: #ff9900; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View on Amazon</a>
+              </div> 
+
+        </div>
+        
+        <script>
+            let totalScore = 0;
+            function startApp()
+            
+            {
+               const today = new Date(). toDateString();
+               const savedDate = localStorage.getItem('app_date');
+
+                if(savedDate !==today)
+                {
+                  localStorage.setItem('task1_completed', 'flase');
+                  localStorage.setItem('task2_completed', 'flase');
+                  localStorage.setItem('task3_completed', 'flase');
+                  localStorage.setItem('app_date',today);
+                }
+
+            
+               document.getElementById('welcome-screen').classList.add('hidden');
+               document.getElementById('main-app').classList.remove('hidden');
+
+               const bgMusic=document.getElementById(`bg-music`);
+               if(bgMusic)
+            { 
+               bgMusic.volume=0.3;//volume thoda halka rakhenge taaki achha lage
+               bgMusic.play().catch(e=> console.log("Audio play blocked by browser:",e));
+
+            }
+
+            }
+         
+
+
+        function completeTask(taskNumber, points)
+        {
+         const btn = document.getElementById(`btn${taskNumber}`);
+         const taskCard = document.getElementById(`task${taskNumber}-box`);
+        
+         if(btn && !btn.disabled)
+          {
+            btn.innerText = 'Completed ✔';
+            btn.style.backgroundColor = '#b2bec3';
+            btn.disabled = true;
+            localStorage.setItem(`task${taskNumber}_completed`,`true`);
+
+            const successAudio=document.getElementById('success-sound');
+            if(successAudio)
+          {
+            successAudio.currentTime= 0;
+            successAudio.play();
+          }
+             
+              if(taskCard)
+               {
+                  taskCard.classList.add('completed');
+
+               }
+
+               let scoreElem = document.getElementById('score');
+                 if (scoreElem)
+                 {
+                  let currentScore = parseInt(scoreElem.innerText) || 0;
+                  scoreElem.innerText = currentScore + points;
+                 }
+
+                 checkAllCompleted();
+                 playSuccessSound();
+
+          }
+        }
+        function checkAllCompleted()
+        {
+         let t1= localStorage.getItem('task1_completed')==='true';
+         let t2= localStorage.getItem('task2_completed')==='true';
+         let t3= localStorage.getItem('task3_completed')==='true';
+         const overlay = document.getElementById('popup-overlay');
+         const popupBox = document.getElementById('popup-box');
+          if(t1 && t2 && t3)
+           {
+            popupBox.innerHTML = `
+            <div style="font-size: 40px; margin-bottom: 10px">🎉 🏆 </div>
+            <h2 style="color: #d63031;">Shaandaar!</h2>
+            <p style="font-weight: bold; color: #2d3436;"> Wah aapne saari task poori kar li. Aap super kid ho!🏆</p>
+            <button class="start-btn" onclick="document.getElementById('popup-overlay').classList.add('hidden')" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;">Awesome!</button>
+            `; 
+             
+           
+           overlay.classList.remove('hidden');
+
+           }
+         
+         
+        }
+        function playSuccessSound()
+        {
+         const audio=new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAFAAABAgAZGF0YqFbF1fdjivrjBhNjVgodDbq2ec20Wwf3+HfpqMhbK4o9z08t/jpWd2gIKZgQ==");
+         audio.play().catch(e=> console.log("Audio play error:",e));
+
+        }
+
+        </Script>
+        <!--DYNAMIC POPUP OVERLAY-->
+        <div id="popup-overlay" class="hidden" style="position: fixed; top:0; width: 100%; height: 100%; background: rgba(0,0,0,0,6); display: felx; justify-content: center; align-items: center; z-index: 1000;">
+         <div class="popup-content" id="popup-box" style="background: white; padding: 30px; border-radius: 20px; text-align: center;"></div>
+         </div>
+         <!--Background Music (Looping)-->
+         <div style="display: none;">
+            <audio id="bg-music" loop>
+               <source src="https://assets.mixkit.co/music/preview/mixkit-happy-childhood-991.mp3" type="audio/mpeg">
+            </audio> 
+            <!--Task Complete/Success Sound-->
+            <audio id="Success-sound">
+               <source src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" type="audio/mpeg">
+            </audio>
+         </div>     
+              
+              
+    </body>      
+</html>    
+
+        
+    
