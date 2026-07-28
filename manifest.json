@@ -4,9 +4,9 @@
   "display": "standalone",
   "name": "Little Sanskar",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/little-sanskar/",
   "short_name": "LittelSanskar",
-  "start_url": "/",
+  "start_url": "/little-sanskar/",
   "theme_color": "#ffffff",
   "description": "chote hero bane ke liye tayyar ho tu"
 }
