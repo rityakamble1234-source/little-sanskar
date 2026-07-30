@@ -9,4 +9,11 @@
   "start_url": "/little-sanskar/",
   "theme_color": "#ffffff",
   "description": "chote hero bane ke liye tayyar ho tu"
+  "icons":[
+    {
+      "src":"icons_pic.jpg","sizes":"512x512","type":"image/jpg"
+
+    
+    }
+  ]
 }
